@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundbee"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/logo_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archristy"
+        android:text="Bee Productive"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/bee" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/segoe"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:width="300dp"
+        android:ems="10"
+        android:fontFamily="@font/segoe"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextTextEmailAddress"
+        android:layout_centerInParent="true"
+        android:width="300dp"
+        android:ems="10"
+        android:fontFamily="@font/segoe"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextTextPassword"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:width="300dp"
+        android:backgroundTint="#234978"
+        android:fontFamily="@font/segoe"
+        android:text="Login"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/segoe"
+        android:text="Not register yet?"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/segoe"
+        android:text="Register here"
+        android:textColor="#234978"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+</RelativeLayout>

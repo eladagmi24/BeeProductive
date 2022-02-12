@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "406214004861",
+    "firebase_url": "https://beeproductive-9dfcd-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "beeproductive-9dfcd",
+    "storage_bucket": "beeproductive-9dfcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406214004861:android:cd68df5d4fe8accf15e114",
+        "android_client_info": {
+          "package_name": "dev.eladagmi.beeproductive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406214004861-24p2n8p2q242egm15i5ujpknemf0grp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh8GdQ8AVu83QNyX3JYmbG6ji9o5TQig0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406214004861-24p2n8p2q242egm15i5ujpknemf0grp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
