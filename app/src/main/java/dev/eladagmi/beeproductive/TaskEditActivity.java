@@ -41,14 +41,14 @@ public class TaskEditActivity extends AppCompatActivity implements Serializable 
     private static final int CONTACT_PERMISSION_CODE = 1;
     private static final int CONTACT_PICK_CODE = 2;
 
-    String[] importance = {"Important & Urgent", "Important & Not Urgent", "Not Important & Urgent", "Not Important & Not Urgent"};
-    Spinner importanceSpinner;
+    private String[] importance = {"Important & Urgent", "Important & Not Urgent", "Not Important & Urgent", "Not Important & Not Urgent"};
+    private Spinner importanceSpinner;
 
     private CircleImageView image;
     private TextInputEditText taskName, creatorName, addMember;
     private TextInputEditText dueDate, hourToPerform;
     private Button submitTask;
-    TaskActivity taskActivity = new TaskActivity();
+    private TaskActivity taskActivity = new TaskActivity();
 
 
 
@@ -90,7 +90,7 @@ public class TaskEditActivity extends AppCompatActivity implements Serializable 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width), (int) (height));
+        getWindow().setLayout((width), (height));
         addMember = findViewById(R.id.login_ET_members);
         addMember.setOnClickListener(view -> {
             if (checkContactPermission()) {
@@ -273,7 +273,6 @@ public class TaskEditActivity extends AppCompatActivity implements Serializable 
 
             //Contacts
             if(requestCode == CONTACT_PICK_CODE) {
-                //addMember.setText("");
                 Cursor cursor1, cursor2;
                 Uri uri = data.getData();
 

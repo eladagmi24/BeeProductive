@@ -18,24 +18,19 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterEmailActivity extends AppCompatActivity {
 
-    EditText etRegEmail;
-    EditText etRegPassword;
-    TextView tvLoginHere;
-    Button btnRegister;
-
-    FirebaseAuth mAuth;
+    private EditText etRegEmail;
+    private EditText etRegPassword;
+    private TextView tvLoginHere;
+    private Button btnRegister;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeremail);
-        etRegEmail = findViewById(R.id.editTextTextEmailAddress);
-        etRegPassword = findViewById(R.id.editTextTextPassword);
-        tvLoginHere = findViewById(R.id.textView3);
-        btnRegister = findViewById(R.id.button2);
+        findViews();
 
         mAuth = FirebaseAuth.getInstance();
-
         btnRegister.setOnClickListener(view -> {
             createUser();
         });
@@ -47,7 +42,6 @@ public class RegisterEmailActivity extends AppCompatActivity {
     private void createUser() {
         String email = etRegEmail.getText().toString();
         String password = etRegPassword.getText().toString();
-
         if(TextUtils.isEmpty(email)){
             etRegEmail.setError("Email can't be empty");
             etRegEmail.requestFocus();
@@ -70,6 +64,11 @@ public class RegisterEmailActivity extends AppCompatActivity {
 
         }
     }
-
+    private void findViews() {
+        etRegEmail = findViewById(R.id.editTextTextEmailAddress);
+        etRegPassword = findViewById(R.id.editTextTextPassword);
+        tvLoginHere = findViewById(R.id.textView3);
+        btnRegister = findViewById(R.id.button2);
+    }
 
 }

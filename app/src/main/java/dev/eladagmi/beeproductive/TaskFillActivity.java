@@ -3,8 +3,6 @@ package dev.eladagmi.beeproductive;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +26,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -38,23 +35,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class TaskFillActivity extends AppCompatActivity implements Serializable {
 
     //Contacts
     private String contacts = "";
     private static final int CONTACT_PERMISSION_CODE = 1;
     private static final int CONTACT_PICK_CODE = 2;
-
-    String[] importance = {"Important & Urgent", "Important & Not Urgent", "Not Important & Urgent", "Not Important & Not Urgent"};
-    Spinner importanceSpinner;
-
-    private CircleImageView image;
+    private String[] importance = {"Important & Urgent", "Important & Not Urgent", "Not Important & Urgent", "Not Important & Not Urgent"};
+    private Spinner importanceSpinner;
     private TextInputEditText taskName, creatorName, addMember;
     private TextInputEditText dueDate, hourToPerform;
     private Button submitTask;
-    TaskActivity taskActivity = new TaskActivity();
+    private TaskActivity taskActivity = new TaskActivity();
 
 
     @Override
@@ -93,8 +85,7 @@ public class TaskFillActivity extends AppCompatActivity implements Serializable 
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width), (int) (height));
+        getWindow().setLayout((width), (height));
         addMember = findViewById(R.id.login_ET_members);
         addMember.setOnClickListener(view -> {
             if (checkContactPermission()) {
@@ -105,8 +96,6 @@ public class TaskFillActivity extends AppCompatActivity implements Serializable 
             }
 
         });
-
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference tasksRef = database.getReference("tasks");
@@ -154,21 +143,6 @@ public class TaskFillActivity extends AppCompatActivity implements Serializable 
                     taskActivity.setLon(location.getLongitude());
                     tasksRef.child(String.valueOf(Calendar.getInstance().getTime())).setValue(taskActivity);
                     Toast.makeText(TaskFillActivity.this, "Task added successfully", Toast.LENGTH_SHORT).show();
-                    String message = "New Task added";
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(TaskFillActivity.this)
-                            .setSmallIcon(R.drawable.bee)
-                            .setContentTitle("Hello")
-                            .setContentText(message)
-                            .setAutoCancel(true);
-
-                    Intent intent = new Intent(TaskFillActivity.this, NotificationActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("message", message);
-
-                    PendingIntent pendingIntent = PendingIntent.getActivity(TaskFillActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    builder.setContentIntent(pendingIntent);
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.notify(0, builder.build());
                     finish();
                 }
             }
@@ -217,55 +191,6 @@ public class TaskFillActivity extends AppCompatActivity implements Serializable 
 
 
     }
-//
-//
-//    private void updateData(String task) {
-//        String[] parts, smallParts;
-//        String fullHour, fullImportance, fullDate, fullMembers, fullCreatorName, fullTaskName;
-//        String hour, importance, date, members1, creatorName1, taskName1;
-//
-//        parts = task.split(",");
-//        fullHour = parts[0];
-//        fullImportance = parts[1];
-//        fullDate = parts[2];
-//        fullMembers = parts[3];
-//        fullCreatorName = parts[4];
-//        fullTaskName = parts[5];
-//
-//        smallParts = fullHour.split("=");
-//        hour = smallParts[1];
-//
-//        smallParts = fullImportance.split("=");
-//        importance = smallParts[1];
-//
-//        smallParts = fullDate.split("=");
-//        date = smallParts[1];
-//
-//        smallParts = fullMembers.split("=");
-//        members1 = smallParts[1];
-//
-//        smallParts = fullCreatorName.split("=");
-//        creatorName1 = smallParts[1];
-//
-//        smallParts = fullTaskName.split("=");
-//        taskName1 = smallParts[1];
-//
-//        taskName1 = stringWithoutLastWord(taskName1);
-//        taskName.setText(taskName1);
-//        creatorName.setText(creatorName1);
-//        addMember.setText(members1);
-//        dueDate.setText(date);
-//        hourToPerform.setText(hour);
-//    }
-//
-//    public String stringWithoutLastWord(String str) {
-//        if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == '}') {
-//            str = str.substring(0, str.length() - 1);
-//        }
-//        return str;
-//    }
-
-
     private boolean checkContactPermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == (PackageManager.PERMISSION_GRANTED);
         return result;

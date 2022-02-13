@@ -18,22 +18,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LogInEmailActivity extends AppCompatActivity {
 
-    EditText etRegEmail;
-    EditText etRegPassword;
-    TextView tvRegisterHere;
-    Button btnLogin;
+    private EditText etRegEmail;
+    private EditText etRegPassword;
+    private TextView tvRegisterHere;
+    private Button btnLogin;
+    private FirebaseAuth mAuth;
 
-    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginemail);
-
-        etRegEmail = findViewById(R.id.editTextTextEmailAddress);
-        etRegPassword = findViewById(R.id.editTextTextPassword);
-        tvRegisterHere = findViewById(R.id.textView3);
-        btnLogin = findViewById(R.id.button2);
-
+        findViews();
         mAuth = FirebaseAuth.getInstance();
 
         btnLogin.setOnClickListener(view ->{
@@ -67,9 +62,13 @@ public class LogInEmailActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
     }
-
+    private void findViews() {
+        etRegEmail = findViewById(R.id.editTextTextEmailAddress);
+        etRegPassword = findViewById(R.id.editTextTextPassword);
+        tvRegisterHere = findViewById(R.id.textView3);
+        btnLogin = findViewById(R.id.button2);
+    }
 
 }

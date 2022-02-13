@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,28 +24,20 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton addTask;
-    CalendarView calendar;
-    ListFragment listFragment;
-    ArrayList<String> allTasks = new ArrayList<>();
-    ArrayList<String> allKeys = new ArrayList<>();
-    TextView txtScore;
-    int score;
-    boolean flag;
-    private MapFragment mapFragment;
-    private GoogleMap map;
-    TextView logout;
+    private FloatingActionButton addTask;
+    private CalendarView calendar;
+    private ArrayList<String> allTasks = new ArrayList<>();
+    private ArrayList<String> allKeys = new ArrayList<>();
+    private TextView txtScore;
+    private int score;
+    private boolean flag;
+    private TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        DatabaseReference scoreRef = database.getReference("score");
-
-
-
         ListFragment listFragment = new ListFragment();
         listFragment.setCallBackList(callBack_List);
         getSupportFragmentManager().beginTransaction().add(R.id.frame1, listFragment).commit();
@@ -62,12 +53,9 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("signout", true);
             startActivity(intent);
         });
-//        mapFragment = new MapFragment();
-//        mapFragment.setCallBackMap(callBack_map);
-        //getSupportFragmentManager().beginTransaction().add(R.id.frame2, mapFragment).commit();
+
+        //Calendar
         calendar = findViewById(R.id.calendar);
-
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("tasks");
         DatabaseReference referenceScore = FirebaseDatabase.getInstance().getReference().child("score");
         reference.addValueEventListener(new ValueEventListener() {
@@ -78,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     allTasks.add(snapshot1.getValue().toString());
                     allKeys.add(snapshot1.getKey());
                 }
-
                 calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
                     @Override
                     public void onSelectedDayChange(CalendarView view, int year, int month,
                                                     int dayOfMonth) {
@@ -95,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -129,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         hideSystemUI();
     }
-
-
 
     CallBack_List callBack_List = new CallBack_List() {
         @Override
@@ -169,30 +152,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
-
         }
-
-
     };
-//    CallBack_Map callBack_map = new CallBack_Map() {
-//        @Override
-//        public void mapClicked(double lat, double lon) {
-//        }
-//
-//        @Override
-//        public void locationSelected(String lat, String lon) {
-//            mapFragment.onClicked(lat, lon);
-//        }
-//
-//    };
-//
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        map = googleMap;
-//        LatLng mark = new LatLng(32.104236455127015, 34.87987851707526);
-//        map.addMarker(new MarkerOptions().position(mark).title("Task created here"));
-//        map.moveCamera(CameraUpdateFactory.newLatLng(mark));
-//    }
     public String stringWithoutLastWord(String str) {
         if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == '}') {
             str = str.substring(0, str.length() - 1);

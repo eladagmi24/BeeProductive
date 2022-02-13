@@ -28,11 +28,11 @@ public class SignInActivity extends AppCompatActivity {
 
     //Google
     private LoginButton login;
-    GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInClient mGoogleSignInClient;
     boolean signout;
     //Email
-    Button btnLogin;
-    FirebaseAuth mAuth;
+    private Button btnLogin;
+    private FirebaseAuth mAuth;
 
     private static int RC_SIGN_IN = 100;
     @Override
@@ -73,8 +73,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         mAuth = FirebaseAuth.getInstance();
-
-
         //Email
         btnLogin = findViewById(R.id.email_button);
         btnLogin.setOnClickListener(view ->{

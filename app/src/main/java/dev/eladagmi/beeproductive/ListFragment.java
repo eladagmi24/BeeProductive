@@ -18,10 +18,6 @@ public class ListFragment extends Fragment {
     private MaterialTextView[] tasks = new MaterialTextView[10];
     private ArrayList<String> keys = new ArrayList<>();
     int counter;
-    public void setCallBackList(CallBack_List callBackList) {
-        this.callBackList = callBackList;
-    }
-
 
     @Nullable
     @Override
@@ -60,9 +56,9 @@ public class ListFragment extends Fragment {
                 tasks[counter].setText(taskName + "                            " + hour);
                 if(importance.equals("Important & Urgent"))
                     tasks[counter].setTextColor(getResources().getColor(R.color.red));
-                else if(importance.equals("Important & not Urgent"))
+                else if(importance.equals("Important & Not Urgent"))
                     tasks[counter].setTextColor(getResources().getColor(R.color.orange));
-                else if(importance.equals("not Important & Urgent"))
+                else if(importance.equals("Not Important & Urgent"))
                     tasks[counter].setTextColor(getResources().getColor(R.color.orange));
                 else
                     tasks[counter].setTextColor(getResources().getColor(R.color.green));
@@ -88,6 +84,9 @@ public class ListFragment extends Fragment {
         }
     }
 
+    public void setCallBackList(CallBack_List callBackList) {
+        this.callBackList = callBackList;
+    }
 
     private void findViews(View view) {
         tasks[0] = view.findViewById(R.id.list_LBL_task1);

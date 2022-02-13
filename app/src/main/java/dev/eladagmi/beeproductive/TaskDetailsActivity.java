@@ -30,14 +30,12 @@ import java.util.Calendar;
 public class TaskDetailsActivity extends AppCompatActivity implements Serializable, OnMapReadyCallback {
 
 
-    TextView exit, edit, taskName, creatorName, members, dateAndHour;
-    ImageButton delete, done;
-    DatabaseReference reference;
-    DatabaseReference scoreRef;
-    CallBack_Data callBackData;
-
+    private TextView exit, edit, taskName, creatorName, members, dateAndHour;
+    private ImageButton delete, done;
+    private DatabaseReference reference;
     private MapFragment mapFragment;
     private GoogleMap map;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +48,7 @@ public class TaskDetailsActivity extends AppCompatActivity implements Serializab
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int) width, (int) height);
+        getWindow().setLayout(width, height);
 
 
         mapFragment = new MapFragment();
@@ -78,8 +76,6 @@ public class TaskDetailsActivity extends AppCompatActivity implements Serializab
         });
 
         fillData(task);
-
-
     }
 
     private void fillData(String task) {
@@ -130,7 +126,6 @@ public class TaskDetailsActivity extends AppCompatActivity implements Serializab
 
         String la = getIntent().getStringExtra("lat");
         String lo = getIntent().getStringExtra("lon");
-        //callBack_map.locationSelected(la, lo);
 
     }
 
